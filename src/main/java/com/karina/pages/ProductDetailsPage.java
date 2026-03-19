@@ -1,5 +1,6 @@
 package com.karina.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -39,14 +40,17 @@ public class ProductDetailsPage extends BasePage {
         return getText(productPrice);
     }
 
+    @Step("Add product to cart")
     public void addToCart() {
         click(addToCartButton);
     }
 
+    @Step("Remove product from cart")
     public void removeFromCart() {
         click(removeFromCartButton);
     }
 
+    @Step("Back to products page")
     public ProductsPage backToProductsPage() {
         click(backToProductsButton);
         return new ProductsPage(driver);

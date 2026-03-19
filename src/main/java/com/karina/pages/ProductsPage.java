@@ -1,5 +1,6 @@
 package com.karina.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -41,19 +42,23 @@ public class ProductsPage extends BasePage {
         return isVisible(addBikeLightButton);
     }
 
+    @Step("add backpack to cart")
     public void addBackpackToCart()
     {
         click(addBackpackButton);
     }
 
+    @Step("add bike light to cart")
     public void addBikeLightToCart() {
         click(addBikeLightButton);
     }
 
+    @Step("remove backpack to cart")
     public void removeBackpackFromCart() {
         click(removeBackpackButton);
     }
 
+    @Step("remove bike light to cart")
     public void removeBikeLightFromCart() {
         click(removeBikeLight);
     }
@@ -66,6 +71,7 @@ public class ProductsPage extends BasePage {
         return isVisible(removeBikeLight);
     }
 
+    @Step("Sort products by '{value}'")
     public void selectSort(String value) {
         Select sort = new Select(find(sortDropdown));
         sort.selectByValue(value);
@@ -94,6 +100,7 @@ public class ProductsPage extends BasePage {
         return prices;
     }
 
+    @Step("add product: '{productName}' to cart")
     public void addProductToCart(String productName) {
         List <WebElement> items = driver.findElements(productCards);
         for (WebElement item : items) {
@@ -114,6 +121,7 @@ public class ProductsPage extends BasePage {
         return "";
     }
 
+    @Step("Open product: '{productName}' details")
     public ProductDetailsPage openProductDetails(String productName) {
 
         List<WebElement> products = driver.findElements(itemNames);
@@ -129,6 +137,7 @@ public class ProductsPage extends BasePage {
         throw new RuntimeException("Product not found" + productName);
     }
 
+    @Step("logout from application")
     public LoginPage logout() {
         click(burgerMenu);
         waitVisible(logoutLink);
@@ -136,6 +145,7 @@ public class ProductsPage extends BasePage {
         return new LoginPage(driver);
     }
 
+    @Step("open cart")
     public CartPage goToCart() {
         click(cartLink);
         return new CartPage(driver);

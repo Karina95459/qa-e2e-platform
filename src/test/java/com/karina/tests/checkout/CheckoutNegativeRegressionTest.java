@@ -4,13 +4,20 @@ import com.karina.pages.CartPage;
 import com.karina.pages.CheckoutPage;
 import com.karina.pages.ProductsPage;
 import com.karina.tests.base.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
 
+@Feature("Checkout")
 public class CheckoutNegativeRegressionTest extends BaseTest {
 
     @Test(dataProvider ="emptyFields",groups = {"regression"})
+    @Description("Checkout should require mandatory fields")
+    @Severity(SeverityLevel.CRITICAL)
     public void checkoutShouldRequireMandatoryFields(String firstName, String lastName, String postalCode, String expectedError) {
         ProductsPage products = openProductsPage();
         products.addBackpackToCart();

@@ -4,9 +4,14 @@ import com.karina.tests.base.BaseTest;
 import com.karina.pages.CartPage;
 import com.karina.pages.ProductsPage;
 import com.karina.pages.CheckoutPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Feature("Cart")
 public class CartRegressionTest extends BaseTest {
 
     private CartPage openCartWithOneItem() {
@@ -23,6 +28,8 @@ public class CartRegressionTest extends BaseTest {
     }
 
     @Test(groups = {"regression"})
+    @Description("Added product should be displayed in cart")
+    @Severity(SeverityLevel.NORMAL)
     public void addedProductShouldBeDisplayedInCart() {
         CartPage cart = openCartWithTwoItems();
         Assert.assertTrue(cart.isOpened());
@@ -31,6 +38,8 @@ public class CartRegressionTest extends BaseTest {
     }
 
     @Test(groups = {"regression"})
+    @Description("Removed product should update cart content")
+    @Severity(SeverityLevel.NORMAL)
     public void removeProductFromCartShouldUpdateCartContent() {
         CartPage cart = openCartWithTwoItems();
         Assert.assertTrue(cart.isOpened());
@@ -44,6 +53,8 @@ public class CartRegressionTest extends BaseTest {
     }
 
     @Test(groups = {"regression"})
+    @Description("Continue Shopping should return to Products Page")
+    @Severity(SeverityLevel.NORMAL)
     public void continueShoppingShouldReturnToProductsPage() {
         CartPage cart = openCartWithOneItem();
         ProductsPage products = cart.continueShopping();
@@ -51,6 +62,8 @@ public class CartRegressionTest extends BaseTest {
     }
 
     @Test(groups = {"regression"})
+    @Description("Checkout button should open Checkout Page")
+    @Severity(SeverityLevel.CRITICAL)
     public void checkoutButtonShouldOpenCheckoutPage() {
         CartPage cart = openCartWithOneItem();
         CheckoutPage checkout = cart.goToCheckout();
@@ -58,6 +71,8 @@ public class CartRegressionTest extends BaseTest {
     }
 
     @Test(groups = {"regression"})
+    @Description("Checkout button should open Checkout Page")
+    @Severity(SeverityLevel.CRITICAL)
     public void removeLastItemShouldMakeCartEmpty() {
         CartPage cart = openCartWithOneItem();
         Assert.assertTrue(cart.isProductPresent("Sauce Labs Backpack"),"Backpack should be displayed in cart");
@@ -67,6 +82,8 @@ public class CartRegressionTest extends BaseTest {
     }
 
     @Test(groups = {"regression"})
+    @Description("Cart state should persist after Continue Button")
+    @Severity(SeverityLevel.NORMAL)
     public void cartStateShouldPersistAfterContinueButton() {
         CartPage cart = openCartWithOneItem();
         ProductsPage products = cart.continueShopping();

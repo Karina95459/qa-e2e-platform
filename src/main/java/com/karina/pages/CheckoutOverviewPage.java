@@ -1,5 +1,6 @@
 package com.karina.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,6 +38,7 @@ public class CheckoutOverviewPage extends BasePage {
         return getItemNames().contains(productName);
     }
 
+    @Step("Finish checkout")
     public CheckoutCompletePage finish() {
         click(finishButton);
         return new CheckoutCompletePage(driver);
@@ -60,6 +62,7 @@ public class CheckoutOverviewPage extends BasePage {
         return Double.parseDouble(text);
     }
 
+    @Step("cancel checkout from overview")
     public ProductsPage cancelCheckoutOverview() {
         click(cancelButton);
         return new ProductsPage(driver);

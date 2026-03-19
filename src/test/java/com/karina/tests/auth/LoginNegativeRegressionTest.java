@@ -2,13 +2,20 @@ package com.karina.tests.auth;
 
 import com.karina.pages.LoginPage;
 import com.karina.tests.base.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
+@Feature("Authentication")
 public class LoginNegativeRegressionTest extends BaseTest {
 
     @Test(dataProvider = "invalidLogins", groups = {"regression"})
+    @Description("Login should show error for invalid credentials")
+    @Severity(SeverityLevel.CRITICAL)
     public void loginShouldShowErrorForInvalidCredentials(String username, String password, String expectedError) {
         LoginPage login = new LoginPage(driver);
         login.open();

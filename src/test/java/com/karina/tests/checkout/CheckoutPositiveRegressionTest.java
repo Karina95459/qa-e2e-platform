@@ -2,9 +2,14 @@ package com.karina.tests.checkout;
 
 import com.karina.pages.*;
 import com.karina.tests.base.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
+@Feature("Checkout")
 public class CheckoutPositiveRegressionTest extends BaseTest {
 
     private CheckoutPage openCheckoutPage(String... productNames) {
@@ -24,6 +29,8 @@ public class CheckoutPositiveRegressionTest extends BaseTest {
 
 
     @Test(groups = "regression")
+    @Description("Checkout with valid information should open Overview")
+    @Severity(SeverityLevel.CRITICAL)
     public void checkoutWithValidInformationShouldOpenOverview() {
         CheckoutPage checkout = openCheckoutPage("Sauce Labs Backpack");
         Assert.assertTrue(checkout.isOpened(),"checkout page should be opened");
@@ -35,6 +42,8 @@ public class CheckoutPositiveRegressionTest extends BaseTest {
     }
 
     @Test(groups = "regression")
+    @Description("Checkout Overview should display selected Products")
+    @Severity(SeverityLevel.CRITICAL)
     public void checkoutOverviewShouldDisplaySelectedProducts() {
         CheckoutPage checkout = openCheckoutPage("Sauce Labs Backpack", "Sauce Labs Bike Light");
         Assert.assertTrue(checkout.isOpened(),"checkout page should be opened");
@@ -48,6 +57,8 @@ public class CheckoutPositiveRegressionTest extends BaseTest {
     }
 
     @Test(groups = "regression")
+    @Description("finish Checkout should complete Order")
+    @Severity(SeverityLevel.CRITICAL)
     public void finishCheckoutShouldCompleteOrder() {
         CheckoutOverviewPage overview = openCheckoutOverviewPage();
         Assert.assertTrue(overview.isOpened(),"overview page should be opened");
@@ -57,6 +68,8 @@ public class CheckoutPositiveRegressionTest extends BaseTest {
     }
 
     @Test(groups = "regression")
+    @Description("cancel from Checkout should return to Cart")
+    @Severity(SeverityLevel.NORMAL)
     public void cancelFromCheckoutShouldReturnToCart() {
         CheckoutPage checkout = openCheckoutPage("Sauce Labs Backpack");
         Assert.assertTrue(checkout.isOpened(),"checkout page should be opened");
@@ -66,6 +79,8 @@ public class CheckoutPositiveRegressionTest extends BaseTest {
     }
 
     @Test(groups = "regression")
+    @Description("cancel from Overview should return to Products Page")
+    @Severity(SeverityLevel.NORMAL)
     public void cancelFromOverviewShouldReturnToProductsPage() {
         CheckoutOverviewPage overview = openCheckoutOverviewPage();
         Assert.assertTrue(overview.isOpened(),"overview page should be opened");
@@ -75,6 +90,8 @@ public class CheckoutPositiveRegressionTest extends BaseTest {
     }
 
     @Test(groups = "regression")
+    @Description("checkout Overview should display correct Total")
+    @Severity(SeverityLevel.CRITICAL)
     public void checkoutOverviewShouldDisplayCorrectTotal() {
         CheckoutPage checkout = openCheckoutPage("Sauce Labs Backpack", "Sauce Labs Bike Light");
         Assert.assertTrue(checkout.isOpened(),"checkout page should be opened");

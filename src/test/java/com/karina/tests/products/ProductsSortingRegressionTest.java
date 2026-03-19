@@ -2,15 +2,22 @@ package com.karina.tests.products;
 
 import com.karina.pages.ProductsPage;
 import com.karina.tests.base.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Feature("Products")
 public class ProductsSortingRegressionTest extends BaseTest {
 
     @Test(groups = {"regression"})
+    @Description("Sort products by name AZ should work")
+    @Severity(SeverityLevel.NORMAL)
     public void shouldSortProductsByNameAZ() {
         ProductsPage products = openProductsPage();
         Assert.assertTrue(products.isOpened());
@@ -24,6 +31,8 @@ public class ProductsSortingRegressionTest extends BaseTest {
     }
 
     @Test(groups = {"regression"})
+    @Description("Sort products by name ZA should work")
+    @Severity(SeverityLevel.NORMAL)
     public void shouldSortProductsByNameZA() {
         ProductsPage products = openProductsPage();
         Assert.assertTrue(products.isOpened());
@@ -39,6 +48,8 @@ public class ProductsSortingRegressionTest extends BaseTest {
     }
 
     @Test(groups = {"regression"})
+    @Description("Sort products by Price low-high")
+    @Severity(SeverityLevel.NORMAL)
     public void shouldSortProductsByPriceLowHigh() {
         ProductsPage products = openProductsPage();
         Assert.assertTrue(products.isOpened());
@@ -53,6 +64,8 @@ public class ProductsSortingRegressionTest extends BaseTest {
     }
 
     @Test(groups = {"regression"})
+    @Description("Sort products by Price high-low")
+    @Severity(SeverityLevel.NORMAL)
     public void shouldSortProductsPriceHighLow() {
         ProductsPage products = openProductsPage();
         Assert.assertTrue(products.isOpened());

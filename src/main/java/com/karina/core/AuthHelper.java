@@ -3,11 +3,13 @@ package com.karina.core;
 import com.karina.pages.HomePage;
 import com.karina.pages.LoginPage;
 import com.karina.pages.ProductsPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import com.karina.config.Config;
 
 public class AuthHelper {
 
+    @Step("Login as standard user")
     public static ProductsPage loginAsStandardUser(WebDriver driver) {
         HomePage home = new HomePage(driver);
         home.open(Config.BASE_URL);

@@ -1,5 +1,6 @@
 package com.karina.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -43,6 +44,7 @@ public class CartPage extends BasePage {
         return getItemNames().isEmpty();
     }
 
+    @Step("Remove product '{productName}' from cart")
     public void removeProduct(String productName) {
         List<WebElement> items = driver.findElements(cartItems);
         for (WebElement item : items) {
@@ -54,11 +56,13 @@ public class CartPage extends BasePage {
         }
     }
 
+    @Step("Continue shopping")
     public ProductsPage continueShopping() {
         click(continueShoppingButton);
         return new ProductsPage(driver);
     }
 
+    @Step("Proceed to checkout")
     public CheckoutPage goToCheckout() {
         click(checkoutButton);
         return new CheckoutPage(driver);

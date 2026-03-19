@@ -4,12 +4,19 @@ import com.karina.core.AuthHelper;
 import com.karina.pages.CartPage;
 import com.karina.pages.ProductsPage;
 import com.karina.tests.base.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
+@Feature("Cart")
 public class CartSmokeTest extends BaseTest {
 
     @Test(groups = {"smoke"})
+    @Description("User can open cart")
+    @Severity(SeverityLevel.CRITICAL)
     public void userCanOpenCart() {
         ProductsPage products = AuthHelper.loginAsStandardUser(driver);
         Assert.assertTrue(products.isOpened());
