@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import java.net.URL;
 
 public class DriverFactory {
 
@@ -39,6 +41,16 @@ public class DriverFactory {
         options.addArguments("--disable-extensions");
         options.addArguments("--disable-notifications");
         options.addArguments("--no-default-browser-check");
+
+        String remoteUrl = System.getenv("SELENIUM_REMOTE_URL");
+        if (remoteUrl != null && !remoteUrl.isBlank()) {
+            try
+            {
+                return new RemoteWebDriver(new URL(remoteUrl), options);
+            } catch (Exception e) {
+                throw new RuntimeException("Cannot create remote driver");
+            }
+        }
 
         return new ChromeDriver(options);
     }
