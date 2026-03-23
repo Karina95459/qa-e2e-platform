@@ -31,11 +31,8 @@ jobs:
       - name: Run regression tests in Docker
         run: docker compose -f docker-compose.yml -f docker-compose.regression.yml up --build --exit-code-from tests
 
-      - name: Fix permission for allure results
-        run: chmod -R 777 allure-results
-
       - name: Generate Allure report
-        run: mvn allure:report
+        run: sudo mvn allure:report
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
