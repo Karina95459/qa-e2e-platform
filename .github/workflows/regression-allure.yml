@@ -1,0 +1,51 @@
+name: Regression Tests with Allure
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Set up Java
+        uses: action/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Clean allure results
+        run: rm -rf allure-results/*
+
+      - name: Run regression tests in Docker
+        run: docker compose -f docker-compose.yml -f docker-compose.regression.yml up --build --exit-code-from tests
+
+      - name: Generate Allure report
+        run: mvn allure:report
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/site/allure-maven-plugin
+
+  deploy:
+    needs: regression
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+
+    steps:
+      - name: Deploy to github pages
+        uses: actions/deploy-pages@v4
