@@ -23,7 +23,6 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-          cache: maven
 
       - name: Clean allure results
         run: rm -rf allure-results/*
