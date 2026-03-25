@@ -16,6 +16,23 @@ The project automates core user flows of the application and demonstrates a stru
 - GitHub Actions
 - GitHub Pages
 
+## The main goal of this project is to showcase:
+ - a structured UI test automation framework
+ - Page Object Model architecture
+ - smoke and regression test separation
+ - positive and negative test coverage
+ - Docker-based test execution
+ - Selenium remote execution with Docker Compose
+ - Allure reporting
+ - step-by-step test reporting
+ - severity and feature annotations
+ - screenshots on failure
+ - GitHub Actions integration
+ - automated smoke execution in CI
+ - manual regression execution workflow
+ - published Allure reports via GitHub Pages
+
+
 ## Functionality
 
 The framework includes automated tests for the following features:
